@@ -7,4 +7,10 @@
     <string name="information">Information</string>
     <string name="option_1">Option 1</string>
     <string name="option_2">Option 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_alerts_fragment">Alerts fragment</string>
+    <string name="hello_info_fragment">Info fragment</string>
+    <string name="hello_email_fragment">Email fragment</string>
 </resources>
