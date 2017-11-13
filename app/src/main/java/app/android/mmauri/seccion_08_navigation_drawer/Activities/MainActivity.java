@@ -63,17 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (fragmentTx == true) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame, fragment)
-                            .commit();
-
-                    // Marca el item como clickeado
-                    item.setChecked(true);
-                    // Actualizamos el titulo del toolbar
-                    getSupportActionBar().setTitle(item.getTitle());
-                    // Cerramos el menu
-                    drawerLayout.closeDrawers();
+                    changeFragment(fragment, item);
                 }
 
                 return true;
@@ -89,17 +79,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragmentByDefault() {
+        // El item Email en el menu ocupa la posicion (index) 0
+        changeFragment(new EmailFragment(), navigationView.getMenu().getItem(0));
+    }
+
+    private void changeFragment(Fragment fragment, MenuItem item) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, new EmailFragment())
+                .replace(R.id.content_frame, fragment)
                 .commit();
 
-        // Recuperamos el item de la lista del EmailFragment (Es el primer elemento)
-        MenuItem item = navigationView.getMenu().getItem(0);
-        // Lo marcamos como seleccionado
+        // Marca el item como clickeado
         item.setChecked(true);
         // Actualizamos el titulo del toolbar
         getSupportActionBar().setTitle(item.getTitle());
+        // Cerramos el menu
+        drawerLayout.closeDrawers();
     }
 
     @Override
