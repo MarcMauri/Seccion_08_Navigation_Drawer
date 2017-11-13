@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navView);
 
+        setFragmentByDefault();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -84,6 +86,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setFragmentByDefault() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, new EmailFragment())
+                .commit();
+
+        // Recuperamos el item de la lista del EmailFragment (Es el primer elemento)
+        MenuItem item = navigationView.getMenu().getItem(0);
+        // Lo marcamos como seleccionado
+        item.setChecked(true);
+        // Actualizamos el titulo del toolbar
+        getSupportActionBar().setTitle(item.getTitle());
     }
 
     @Override
