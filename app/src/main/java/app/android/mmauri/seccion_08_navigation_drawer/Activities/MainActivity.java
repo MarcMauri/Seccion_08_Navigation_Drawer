@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import app.android.mmauri.seccion_08_navigation_drawer.Fragments.AlertsFragment;
@@ -31,6 +32,28 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navView);
 
         setFragmentByDefault();
+
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                Toast.makeText(getApplicationContext(), "Open", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Toast.makeText(getApplicationContext(), "Close", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -62,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
-                if (fragmentTx == true) {
+                if (fragmentTx) {
                     changeFragment(fragment, item);
                 }
 
